@@ -1,0 +1,2 @@
+$ContentRoot = $PSScriptRoot
+
