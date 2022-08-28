@@ -2,8 +2,8 @@
 
 #apt-get update
 #add-apt-repository ppa:longsleep/golang-backports
-#apt update
-apt-get install -y git gcc  electric-fence mysql-server mysql-client duende
+apt update
+apt-get install -y git gcc electric-fence mysql-server mysql-client duende
 snap install --classic --channel=1.13/stable go
 
 ROOT="/home/vagrant"
@@ -13,16 +13,16 @@ if [ ! -d $ROOT/xcompilers ]; then
   exit 5
 fi
 
-cd "/home/vagrant/xcompilers" || exit 5
+cd "$ROOT/xcompilers" || exit 5
 for filename in *.tar.bz2; do
   tar -jxf "${filename}"
-  echo "export PATH=\$PATH:$ROOT/xcompile/$filename/bin" >>~/.mirairc
-  echo ">> Compiler $filename installed"
+  echo "export PATH=$PATH:$ROOT/xcompile/${filename%%.*}/bin" >> $ROOT/.mirairc
+  echo ">> Compiler ${filename%%.*} installed"
 done
 
-echo "export PATH=\$PATH:/usr/local/go/bin" >>~/.mirairc
-echo "export GOPATH=\$HOME/go" >>~/.mirairc
-echo "source ~/.mirairc" >>~/.bashrc
+echo "export PATH=$PATH:/usr/local/go/bin" >> $ROOT/.mirairc
+echo "export GOPATH=$HOME/go" >> /$ROOT/.mirairc
+echo "source ~/.mirairc" >> $ROOT/.bashrc
 
 #  echo ">>> Installing crosscompilers..."
 #  mkdir -p "$ROOT"/mirai_root/xcompile
@@ -43,7 +43,7 @@ echo "source ~/.mirairc" >>~/.bashrc
 #  done
 
 echo "Reloading mirairc..."
-source ~/.mirairc
+source $ROOT/.mirairc
 
 echo "Getting go requirements..."
 go get github.com/go-sql-driver/mysql
