@@ -34,8 +34,8 @@ int main(int argc, char **args)
     addrs_len = 2;
     addrs = calloc(addrs_len, sizeof (ipv4_t));
 
-    addrs[0] = inet_addr("192.168.0.1"); // Address to bind to
-    addrs[1] = inet_addr("192.168.1.1"); // Address to bind to
+    addrs[0] = inet_addr("10.10.10.1"); // Address to bind to
+    addrs[1] = inet_addr("10.10.10.10"); // Address to bind to
 #endif
 
     if (argc == 2)

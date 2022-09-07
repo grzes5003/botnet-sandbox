@@ -1,0 +1,9 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "bin": {
+    "hello": "index.js"
+  },
+  "main": "index.js",
+  "dependencies": {}
+}

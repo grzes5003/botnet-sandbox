@@ -17,7 +17,8 @@ try
     {
         Hyper-V\Add-VMNetworkAdapter $vm -Switch $SwitchName -Name "MiraiNic"
     }
-#    Get-VMNetworkAdapter $vm -Name "MiraiNic" | Set-VMNetworkAdapter –PortMirroring Source | Write-Host
+#    Get-VMNetworkAdapter $vm -Name "MiraiNic"
+#    Set-VMNetworkAdapter -VMName $vm -VMNetworkAdapterName "MiraiNic" –PortMirroring Source
     Write-Host "------------------ Configuration of Node finished  -------------------"
 }
 catch

